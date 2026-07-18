@@ -29,7 +29,7 @@ To ensure the router can successfully communicate with the modem, Ports 1 and 2 
 
 To prevent network disruption and IP conflicts, I had to make configuration changes to the switch before being deployed into the live environment. Out of the box, the switch defaults to a static IP of `192.168.0.1`. Because my machine was disconnected from the main network, it defaulted to an APIPA address (`169.254.x.x`), which cannot route to the switch's subnet. To establish communication, I manually assigned a static IP within the switch's `/24` subnet (e.g., `192.168.0.10`).
 
-Once access to the management web UI was established, I permanently changed the switch’s management IP to `192.168.0.5`. This critical step prevents a Layer 3 IP collision, as the factory default (`192.168.0.1`) is identical to the default gateway address of the upstream home router.
+Once access to the management web UI was established, I permanently changed the switch’s management IP to `192.168.0.5`. This prevents a Layer 3 IP collision, as the factory default (`192.168.0.1`) is the same as the default gateway address of the upstream home router.
 
 ## Virtual Machine Network Configuration
 
