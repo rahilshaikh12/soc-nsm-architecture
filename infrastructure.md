@@ -11,7 +11,7 @@ To minimize resource use and simplify initial integration, all three security se
 
 ## Network Architecture & Edge Visibility
 
-To achieve full visibility into raw internet traffic without introducing the cost or complexity of an enterprise edge router (e.g., pfSense/OPNsense), this project utilizes a highly targeted Port Mirroring (SPAN) topology.
+To achieve full visibility into raw internet traffic without introducing the cost or complexity of an enterprise edge router (e.g., pfSense/OPNsense), I utilized a highly targeted Port Mirroring (SPAN) topology.
 
 A managed switch is placed physically inline between the ISP modem and the home router, operating strictly at Layer 2 to avoid exposing the management interface to the WAN. The switch is configured to mirror all ingress and egress traffic crossing the WAN boundary and forward it to the IDS sensor.
 
@@ -25,7 +25,7 @@ To ensure the router can successfully communicate with the modem, Ports 1 and 2 
 
 ### Out-of-Band Switch Provisioning
 
-To prevent network disruption and IP conflicts, the TP-Link Omada switch was provisioned out-of-band before being deployed into the live environment. Out of the box, the switch defaults to a static IP of `192.168.0.1`. Because my machine was disconnected from the main network, it defaulted to an APIPA address (`169.254.x.x`), which cannot route to the switch's subnet. To establish communication, I manually assigned a static IP within the switch's `/24` subnet (e.g., `192.168.0.10`).
+To prevent network disruption and IP conflicts, I had to make configuration changes to the switch before being deployed into the live environment. Out of the box, the switch defaults to a static IP of `192.168.0.1`. Because my machine was disconnected from the main network, it defaulted to an APIPA address (`169.254.x.x`), which cannot route to the switch's subnet. To establish communication, I manually assigned a static IP within the switch's `/24` subnet (e.g., `192.168.0.10`).
 
 Once access to the management web UI was established, I permanently changed the switch’s management IP to `192.168.0.5`. This critical step prevents a Layer 3 IP collision, as the factory default (`192.168.0.1`) is identical to the default gateway address of the upstream home router.
 
