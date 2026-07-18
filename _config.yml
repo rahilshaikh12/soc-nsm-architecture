@@ -1,8 +1,8 @@
 theme: minima
 header_pages: 
-- project_objectives.md
+- objectives.md
 - infrastructure.md
-- wazuh_deployment.md
-- suricata_ids.md
-- zeek_nsm.md
+- wazuh.md
+- suricata.md
+- zeek.md
 - next_steps.md
