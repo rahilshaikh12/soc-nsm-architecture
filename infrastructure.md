@@ -11,6 +11,8 @@ To minimize resource use and simplify initial integration, all three security se
 
 ## Network Architecture & Edge Visibility
 
+![Home Lab Network Architecture Diagram](/assets/images/network_topology.png)
+
 To achieve full visibility into raw internet traffic without introducing the cost or complexity of an enterprise edge router (e.g., pfSense/OPNsense), I utilized a highly targeted Port Mirroring (SPAN) topology.
 
 A managed switch is placed physically inline between the ISP modem and the home router, operating strictly at Layer 2 to avoid exposing the management interface to the WAN. The switch is configured to mirror all ingress and egress traffic crossing the WAN boundary and forward it to the IDS sensor.
