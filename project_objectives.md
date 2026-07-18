@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Project Objectives
+title: Objectives
 ---
 
 1. **Endpoint Security & SIEM:** Deploy Wazuh to centralize log management and monitor endpoint security across all personal devices.
