@@ -5,3 +5,4 @@ header_pages:
 - wazuh_deployment.md
 - suricata_ids.md
 - zeek_nsm.md
+- next_steps.md
