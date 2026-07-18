@@ -3,4 +3,5 @@ header_pages:
 - project_objectives.md
 - infrastructure.md
 - wazuh_deployment.md
-- suricata.ids
+- suricata_ids.md
+- zeek_nsm.md
