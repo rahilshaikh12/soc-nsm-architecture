@@ -36,3 +36,17 @@ For example, the `conn.log` block was formatted as follows:
 ```
 
 I repeated this structure for `dns.log`, `http.log`, and `ssl.log`. After restarting the `wazuh-manager` service to apply the configuration, I validated the ingestion pipeline. By generating baseline web traffic from a separate machine and monitoring the Wazuh dashboard, I successfully confirmed that Zeek’s protocol metadata was parsing correctly alongside my Suricata alerts, completing the centralized visibility architecture.
+
+## Troubleshooting: JSON Decoder Field Limits
+
+After restarting the manager to apply the new Zeek localfile entries, I noticed that the `analysisd` daemon began throwing a continuous stream of `ERROR: Too many fields for JSON decoder` alerts. 
+
+Wazuh's analysis engine has a default limit on how many fields it will parse out of a single JSON event before dropping it. Zeek's `ssl.log`, in particular, flattens TLS certificate chain data into a massive number of nested fields when serialized to JSON. This pushed the events well past Wazuh's default field limit, causing those critical SSL logs to be silently discarded.
+
+To resolve this, I increased the maximum decoder order size. To ensure my changes persist through future Wazuh updates, I added the override directly into `/var/ossec/etc/local_internal_options.conf` rather than editing the default configuration file:
+
+```conf
+analysisd.decoder_order_size=1024
+```
+
+After restarting the `wazuh-manager` service once more, the decoder errors ceased entirely, and the Zeek protocol metadata began ingesting and parsing correctly alongside my Suricata alerts, completing the centralized visibility architecture.
