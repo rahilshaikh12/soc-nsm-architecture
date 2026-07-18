@@ -1,3 +1,4 @@
 theme: minima
 header_pages: 
 - project_objectives.md
+- infrastructure.md
